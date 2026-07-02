@@ -638,3 +638,52 @@ font-size:22px;
 }
 
 }
+/* ===== Hero Scroll ===== */
+
+.scroll-down{
+
+position:absolute;
+
+bottom:40px;
+
+left:50%;
+
+transform:translateX(-50%);
+
+z-index:100;
+
+color:#fff;
+
+font-size:32px;
+
+animation:scrollDown 2s infinite;
+
+}
+
+@keyframes scrollDown{
+
+0%{
+
+transform:translate(-50%,0);
+
+opacity:1;
+
+}
+
+50%{
+
+transform:translate(-50%,12px);
+
+opacity:.5;
+
+}
+
+100%{
+
+transform:translate(-50%,0);
+
+opacity:1;
+
+}
+
+}
