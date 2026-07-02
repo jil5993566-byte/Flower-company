@@ -836,3 +836,12 @@ Hero
 }
 
 }
+/* 手機版首頁 Banner */
+@media (max-width: 768px) {
+
+    .hero-image{
+        height:45vh;
+        object-fit:cover;
+    }
+
+}
