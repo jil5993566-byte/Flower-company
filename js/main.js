@@ -36,19 +36,11 @@ window.addEventListener("scroll", function () {
 
     if (window.scrollY > 80) {
 
-        navbar.style.background = "#1B5E20";
-
-        navbar.style.padding = "10px 0";
-
-        navbar.style.boxShadow = "0 8px 20px rgba(0,0,0,.2)";
+        navbar.classList.add("scrolled");
 
     } else {
 
-        navbar.style.background = "rgba(0,0,0,.35)";
-
-        navbar.style.padding = "18px 0";
-
-        navbar.style.boxShadow = "none";
+        navbar.classList.remove("scrolled");
 
     }
 
