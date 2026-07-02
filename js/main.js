@@ -82,7 +82,7 @@ navLinks.forEach(link => {
 
         if (menu.classList.contains("show")) {
 
-            new bootstrap.Collapse(menu).hide();
+            bootstrap.Collapse.getOrCreateInstance(menu).hide();
 
         }
 
