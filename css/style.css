@@ -47,69 +47,116 @@ Navbar
 ========================== */
 
 .navbar{
-    background:transparent;
-    padding:18px 0;
+    background:#ffffff;
+    padding:14px 0;
     transition:.35s;
+    box-shadow:0 2px 15px rgba(0,0,0,.08);
     z-index:999;
 }
 
 .navbar.scrolled{
-    background:rgba(27,94,32,.95);
-    backdrop-filter:blur(12px);
-    box-shadow:0 5px 20px rgba(0,0,0,.18);
+    background:#ffffff;
 }
 
 .navbar-brand{
-    color:#fff!important;
+    color:#1B5E20!important;
     font-size:1.45rem;
     font-weight:700;
 }
 
 .nav-link{
-    color:#fff!important;
+    color:#333!important;
     margin-left:20px;
     font-weight:500;
     transition:.3s;
 }
 
 .nav-link:hover{
-    color:var(--gold)!important;
+    color:#1B5E20!important;
 }
 
 /* ==========================
 Hero
 ========================== */
 
+/* ==========================
+Hero
+========================== */
+
 .hero{
+
     position:relative;
-    height:75vh;
-    overflow:hidden;
+
+    width:100%;
+
 }
 
 .hero-image{
+
     width:100%;
-    height:75vh;
+
+    height:320px;
+
     object-fit:cover;
+
 }
 
 .hero-overlay{
+
     position:absolute;
+
     inset:0;
+
     background:rgba(0,0,0,.35);
+
     display:flex;
+
     align-items:center;
+
     justify-content:center;
+
+    text-align:center;
+
+    color:white;
+
 }
 
 .hero h1{
-    font-size:64px;
-    font-weight:900;
-    letter-spacing:2px;
+
+    font-size:42px;
+
+    font-weight:800;
+
 }
 
 .hero p{
-    font-size:22px;
-    margin:25px 0 40px;
+
+    margin:18px 0 28px;
+
+    font-size:18px;
+
+}
+
+@media(max-width:768px){
+
+.hero-image{
+
+    height:260px;
+
+}
+
+.hero h1{
+
+    font-size:30px;
+
+}
+
+.hero p{
+
+    font-size:16px;
+
+}
+
 }
 
 .btn-success{
