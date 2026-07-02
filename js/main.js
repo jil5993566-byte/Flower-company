@@ -52,38 +52,22 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 
     anchor.addEventListener("click", function (e) {
 
-        e.preventDefault();
-
         const target = document.querySelector(this.getAttribute("href"));
 
-        if (target) {
+        if (!target) return;
 
-            target.scrollIntoView({
+        e.preventDefault();
 
-                behavior: "smooth"
+        target.scrollIntoView({
+            behavior: "smooth",
+            block: "start"
+        });
 
-            });
-
-        }
-
-    });
-
-});
-
-// 手機選單自動收合
-
-const navLinks = document.querySelectorAll(".nav-link");
-
-const menu = document.querySelector(".navbar-collapse");
-
-navLinks.forEach(link => {
-
-    link.addEventListener("click", () => {
+        // 手機版收起選單
+        const menu = document.querySelector(".navbar-collapse");
 
         if (menu.classList.contains("show")) {
-
             bootstrap.Collapse.getOrCreateInstance(menu).hide();
-
         }
 
     });
