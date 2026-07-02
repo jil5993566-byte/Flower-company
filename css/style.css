@@ -754,3 +754,85 @@ color:#666;
 margin-bottom:40px;
 
 }
+/* ==========================
+   Navbar V2
+========================== */
+
+.navbar{
+    padding:18px 0;
+    transition:all .35s ease;
+    background:transparent;
+}
+
+.navbar.scrolled{
+    background:rgba(27,94,32,.95);
+    backdrop-filter:blur(12px);
+    box-shadow:0 5px 20px rgba(0,0,0,.15);
+}
+
+.navbar-brand{
+    font-size:1.4rem;
+    font-weight:700;
+    letter-spacing:1px;
+}
+
+.nav-link{
+    color:#fff !important;
+    margin-left:20px;
+    font-weight:500;
+    transition:.3s;
+}
+
+.nav-link:hover{
+    color:#d4af37 !important;
+}
+
+/* ==========================
+Hero
+========================== */
+
+.hero{
+
+    height:100vh;
+    overflow:hidden;
+    position:relative;
+
+}
+
+.hero-image{
+
+    height:100vh;
+    object-fit:cover;
+
+}
+
+.hero-overlay{
+
+    position:absolute;
+    inset:0;
+    background:rgba(0,0,0,.18);
+
+}
+
+.scroll-down{
+
+    position:absolute;
+    bottom:35px;
+    left:50%;
+    transform:translateX(-50%);
+    color:white;
+    font-size:32px;
+    animation:float 2s infinite;
+}
+
+@keyframes float{
+
+0%,100%{
+    transform:translate(-50%,0);
+}
+
+50%{
+    transform:translate(-50%,10px);
+}
+
+}
