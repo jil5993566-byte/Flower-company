@@ -687,3 +687,70 @@ opacity:1;
 }
 
 }
+/* ======================
+About V2
+======================*/
+
+.about-section{
+
+padding:120px 0;
+
+background:#fff;
+
+}
+
+.about-image{
+
+overflow:hidden;
+
+border-radius:24px;
+
+}
+
+.about-image img{
+
+width:100%;
+
+transition:.6s;
+
+}
+
+.about-image:hover img{
+
+transform:scale(1.05);
+
+}
+
+.about-small{
+
+color:#1B5E20;
+
+font-weight:700;
+
+letter-spacing:3px;
+
+font-size:14px;
+
+}
+
+.about-section h2{
+
+font-size:48px;
+
+font-weight:800;
+
+margin:20px 0;
+
+}
+
+.about-section p{
+
+font-size:18px;
+
+line-height:2;
+
+color:#666;
+
+margin-bottom:40px;
+
+}
