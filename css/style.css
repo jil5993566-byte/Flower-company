@@ -1,790 +1,79 @@
 /* =====================================
-   綠光工程 × 季兒花藝
-   style.css
+   綠光工程 × 季兒花藝 V2
 ===================================== */
 
 :root{
-
---green:#1B5E20;
---green-light:#2E7D32;
---gold:#D4AF37;
---white:#ffffff;
---light:#f8f9fa;
---dark:#222222;
---gray:#666666;
-
+    --green:#1B5E20;
+    --green-light:#2E7D32;
+    --gold:#D4AF37;
+    --white:#fff;
+    --light:#f8f9fa;
+    --dark:#222;
+    --gray:#666;
 }
 
 *{
-margin:0;
-padding:0;
-box-sizing:border-box;
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
 }
 
 html{
-scroll-behavior:smooth;
+    scroll-behavior:smooth;
 }
 
 body{
-
-font-family:"Noto Sans TC",sans-serif;
-
-color:var(--dark);
-
-background:#fff;
-
-line-height:1.8;
-
+    font-family:"Noto Sans TC",sans-serif;
+    background:#fff;
+    color:var(--dark);
+    line-height:1.8;
 }
-
-/* =========================
-Navbar
-========================= */
-
-.navbar{
-
-background:rgba(0,0,0,.35);
-
-backdrop-filter:blur(12px);
-
-transition:.4s;
-
-padding:18px 0;
-
-}
-
-.navbar-brand{
-
-font-size:28px;
-
-font-weight:700;
-
-letter-spacing:1px;
-
-}
-
-.nav-link{
-
-color:white;
-
-margin-left:25px;
-
-font-weight:500;
-
-transition:.3s;
-
-}
-
-.nav-link:hover{
-
-color:var(--gold);
-
-}
-
-/* =========================
-Hero
-========================= */
-
-.hero{
-
-height:100vh;
-
-position:relative;
-
-overflow:hidden;
-
-}
-
-.hero-image{
-
-height:100vh;
-
-object-fit:cover;
-
-}
-
-.hero-overlay{
-
-position:absolute;
-
-top:0;
-
-left:0;
-
-width:100%;
-
-height:100%;
-
-background:rgba(0,0,0,.45);
-
-display:flex;
-
-justify-content:center;
-
-align-items:center;
-
-}
-
-.hero h1{
-
-font-size:72px;
-
-font-weight:900;
-
-letter-spacing:3px;
-
-}
-
-.hero p{
-
-font-size:24px;
-
-margin-top:20px;
-
-margin-bottom:40px;
-
-}
-
-.btn-success{
-
-background:var(--green);
-
-border:none;
-
-padding:14px 40px;
-
-border-radius:40px;
-
-}
-
-.btn-success:hover{
-
-background:var(--green-light);
-
-transform:translateY(-3px);
-
-transition:.3s;
-
-}
-
-.btn-outline-light{
-
-border-radius:40px;
-
-padding:14px 40px;
-
-}
-/* =====================================
-   Section
-===================================== */
-
-section{
-
-padding:100px 0;
-
-}
-
-.section-title{
-
-font-size:42px;
-
-font-weight:800;
-
-color:var(--green);
-
-margin-bottom:20px;
-
-position:relative;
-
-display:inline-block;
-
-}
-
-.section-title::after{
-
-content:"";
-
-position:absolute;
-
-left:50%;
-
-transform:translateX(-50%);
-
-bottom:-12px;
-
-width:70px;
-
-height:4px;
-
-background:var(--gold);
-
-border-radius:50px;
-
-}
-
-section p{
-
-font-size:18px;
-
-color:var(--gray);
-
-}
-
-/* =====================================
-About
-===================================== */
-
-#about img{
-
-border-radius:25px;
-
-transition:.5s;
-
-box-shadow:0 20px 45px rgba(0,0,0,.15);
-
-}
-
-#about img:hover{
-
-transform:scale(1.03);
-
-}
-
-/* =====================================
-Service Card
-===================================== */
-
-.service-card{
-
-background:white;
-
-padding:45px 30px;
-
-border-radius:20px;
-
-text-align:center;
-
-transition:.35s;
-
-height:100%;
-
-box-shadow:0 10px 30px rgba(0,0,0,.08);
-
-cursor:pointer;
-
-}
-
-.service-card:hover{
-
-transform:translateY(-12px);
-
-box-shadow:0 20px 45px rgba(0,0,0,.18);
-
-}
-
-.service-card i{
-
-font-size:52px;
-
-color:var(--green);
-
-margin-bottom:25px;
-
-transition:.3s;
-
-}
-
-.service-card:hover i{
-
-color:var(--gold);
-
-transform:rotate(8deg);
-
-}
-
-.service-card h4{
-
-font-size:24px;
-
-font-weight:700;
-
-margin-bottom:18px;
-
-}
-
-.service-card p{
-
-font-size:16px;
-
-line-height:1.9;
-
-}
-
-/* =====================================
-Gallery
-===================================== */
-
-.gallery-img{
-
-width:100%;
-
-height:280px;
-
-object-fit:cover;
-
-border-radius:18px;
-
-transition:.4s;
-
-box-shadow:0 10px 30px rgba(0,0,0,.1);
-
-cursor:pointer;
-
-}
-
-.gallery-img:hover{
-
-transform:scale(1.05);
-
-box-shadow:0 20px 45px rgba(0,0,0,.2);
-
-}
-/* =====================================
-   Feature
-===================================== */
-
-.feature-icon{
-
-font-size:60px;
-
-color:var(--green);
-
-margin-bottom:25px;
-
-transition:.4s;
-
-}
-
-.feature-icon:hover{
-
-color:var(--gold);
-
-transform:translateY(-8px);
-
-}
-
-.feature-icon+h4{
-
-font-size:24px;
-
-font-weight:700;
-
-margin-bottom:15px;
-
-}
-
-.feature-icon+p{
-
-font-size:16px;
-
-}
-
-/* =====================================
-Contact
-===================================== */
-
-.contact-section{
-
-background:#1B5E20;
-
-color:white;
-
-}
-
-.contact-section h2{
-
-font-size:42px;
-
-font-weight:800;
-
-margin-bottom:30px;
-
-}
-
-.contact-section p{
-
-color:white;
-
-font-size:18px;
-
-margin-bottom:18px;
-
-}
-
-.contact-section a{
-
-color:white;
-
-text-decoration:none;
-
-transition:.3s;
-
-}
-
-.contact-section a:hover{
-
-color:#D4AF37;
-
-}
-
-.contact-section i{
-
-width:35px;
-
-font-size:22px;
-
-color:#D4AF37;
-
-}
-
-.contact-section iframe{
-
-border-radius:20px;
-
-overflow:hidden;
-
-box-shadow:0 20px 40px rgba(0,0,0,.25);
-
-}
-
-/* =====================================
-Footer
-===================================== */
-
-footer{
-
-background:#111;
-
-padding:30px 0;
-
-}
-
-footer p{
-
-color:#bbb;
-
-margin:0;
-
-font-size:15px;
-
-letter-spacing:1px;
-
-}
-
-/* =====================================
-Image
-===================================== */
 
 img{
-
-max-width:100%;
-
-display:block;
-
+    display:block;
+    max-width:100%;
 }
 
-.rounded-4{
-
-border-radius:20px !important;
-
+a{
+    text-decoration:none;
 }
 
-.shadow{
-
-box-shadow:0 15px 40px rgba(0,0,0,.15)!important;
-
+section{
+    padding:100px 0;
 }
 
-/* =====================================
-Animation
-===================================== */
-
-.service-card,
-.gallery-img,
-.btn{
-
-transition:all .35s ease;
-
-}
-
-.btn:hover{
-
-transform:translateY(-3px);
-
-}
-
-/* =====================================
-Responsive
-===================================== */
-
-@media (max-width:992px){
-
-.hero h1{
-
-font-size:48px;
-
-}
-
-.hero p{
-
-font-size:20px;
-
-}
-
-.section-title{
-
-font-size:34px;
-
-}
-
-.navbar{
-
-padding:12px 0;
-
-}
-
-}
-
-@media (max-width:768px){
-
-.hero{
-
-height:85vh;
-
-}
-
-.hero-image{
-
-height:85vh;
-
-}
-
-.hero h1{
-
-font-size:38px;
-
-line-height:1.3;
-
-}
-
-.hero p{
-
-font-size:18px;
-
-}
-
-.section-title{
-
-font-size:30px;
-
-}
-
-.service-card{
-
-padding:30px 20px;
-
-}
-
-.gallery-img{
-
-height:220px;
-
-}
-
-.contact-section iframe{
-
-margin-top:30px;
-
-}
-
-}
-
-@media (max-width:576px){
-
-.hero h1{
-
-font-size:30px;
-
-}
-
-.hero p{
-
-font-size:16px;
-
-}
-
-.btn{
-
-width:100%;
-
-margin-bottom:15px;
-
-}
-
-.navbar-brand{
-
-font-size:22px;
-
-}
-
-}
-/* ===== Hero Scroll ===== */
-
-.scroll-down{
-
-position:absolute;
-
-bottom:40px;
-
-left:50%;
-
-transform:translateX(-50%);
-
-z-index:100;
-
-color:#fff;
-
-font-size:32px;
-
-animation:scrollDown 2s infinite;
-
-}
-
-@keyframes scrollDown{
-
-0%{
-
-transform:translate(-50%,0);
-
-opacity:1;
-
-}
-
-50%{
-
-transform:translate(-50%,12px);
-
-opacity:.5;
-
-}
-
-100%{
-
-transform:translate(-50%,0);
-
-opacity:1;
-
-}
-
-}
-/* ======================
-About V2
-======================*/
-
-.about-section{
-
-padding:120px 0;
-
-background:#fff;
-
-}
-
-.about-image{
-
-overflow:hidden;
-
-border-radius:24px;
-
-}
-
-.about-image img{
-
-width:100%;
-
-transition:.6s;
-
-}
-
-.about-image:hover img{
-
-transform:scale(1.05);
-
-}
-
-.about-small{
-
-color:#1B5E20;
-
-font-weight:700;
-
-letter-spacing:3px;
-
-font-size:14px;
-
-}
-
-.about-section h2{
-
-font-size:48px;
-
-font-weight:800;
-
-margin:20px 0;
-
-}
-
-.about-section p{
-
-font-size:18px;
-
-line-height:2;
-
-color:#666;
-
-margin-bottom:40px;
-
-}
 /* ==========================
-   Navbar V2
+Navbar
 ========================== */
 
 .navbar{
-    padding:18px 0;
-    transition:all .35s ease;
     background:transparent;
+    padding:18px 0;
+    transition:.35s;
+    z-index:999;
 }
 
 .navbar.scrolled{
     background:rgba(27,94,32,.95);
     backdrop-filter:blur(12px);
-    box-shadow:0 5px 20px rgba(0,0,0,.15);
+    box-shadow:0 5px 20px rgba(0,0,0,.18);
 }
 
 .navbar-brand{
-    font-size:1.4rem;
+    color:#fff!important;
+    font-size:1.45rem;
     font-weight:700;
-    letter-spacing:1px;
 }
 
 .nav-link{
-    color:#fff !important;
+    color:#fff!important;
     margin-left:20px;
     font-weight:500;
     transition:.3s;
 }
 
 .nav-link:hover{
-    color:#d4af37 !important;
+    color:var(--gold)!important;
 }
 
 /* ==========================
@@ -792,56 +81,371 @@ Hero
 ========================== */
 
 .hero{
-
-    height:100vh;
-    overflow:hidden;
     position:relative;
-
+    height:75vh;
+    overflow:hidden;
 }
 
 .hero-image{
-
-    height:100vh;
+    width:100%;
+    height:75vh;
     object-fit:cover;
-
 }
 
 .hero-overlay{
-
     position:absolute;
     inset:0;
-    background:rgba(0,0,0,.18);
-
+    background:rgba(0,0,0,.35);
+    display:flex;
+    align-items:center;
+    justify-content:center;
 }
 
-.scroll-down{
+.hero h1{
+    font-size:64px;
+    font-weight:900;
+    letter-spacing:2px;
+}
 
+.hero p{
+    font-size:22px;
+    margin:25px 0 40px;
+}
+
+.btn-success{
+    background:var(--green);
+    border:none;
+    border-radius:50px;
+    padding:14px 36px;
+}
+
+.btn-success:hover{
+    background:var(--green-light);
+}
+
+.btn-outline-light{
+    border-radius:50px;
+    padding:14px 36px;
+}
+
+/* ==========================
+Section
+========================== */
+
+.section-title{
+    font-size:42px;
+    font-weight:800;
+    color:var(--green);
+    display:inline-block;
+    position:relative;
+    margin-bottom:20px;
+}
+
+.section-title::after{
+    content:"";
     position:absolute;
-    bottom:35px;
     left:50%;
+    bottom:-10px;
     transform:translateX(-50%);
-    color:white;
-    font-size:32px;
-    animation:float 2s infinite;
+    width:70px;
+    height:4px;
+    background:var(--gold);
+    border-radius:50px;
 }
 
-@keyframes float{
-
-0%,100%{
-    transform:translate(-50%,0);
+.section-subtitle{
+    color:#777;
+    margin-top:12px;
 }
 
-50%{
-    transform:translate(-50%,10px);
+/* ==========================
+About
+========================== */
+
+#about img{
+    border-radius:24px;
+    box-shadow:0 15px 40px rgba(0,0,0,.15);
 }
 
+#about p{
+    color:#666;
 }
-/* 手機版首頁 Banner */
-@media (max-width: 768px) {
+
+/* ==========================
+Service
+========================== */
+
+.service-card{
+    background:#fff;
+    border-radius:20px;
+    padding:40px 30px;
+    text-align:center;
+    height:100%;
+    box-shadow:0 10px 30px rgba(0,0,0,.08);
+    transition:.35s;
+}
+
+.service-card:hover{
+    transform:translateY(-8px);
+    box-shadow:0 20px 45px rgba(0,0,0,.16);
+}
+
+.service-card i{
+    font-size:50px;
+    color:var(--green);
+    margin-bottom:20px;
+}
+
+.service-card h4{
+    margin-bottom:15px;
+    font-size:24px;
+    font-weight:700;
+}
+
+.service-card p{
+    color:#666;
+    margin:0;
+}
+
+/* ==========================
+Gallery
+========================== */
+
+.gallery-img{
+    width:100%;
+    height:300px;
+    object-fit:cover;
+    border-radius:18px;
+    transition:.35s;
+    box-shadow:0 10px 30px rgba(0,0,0,.12);
+}
+
+.gallery-img:hover{
+    transform:scale(1.04);
+}
+/* ==========================
+Feature
+========================== */
+
+.feature-icon{
+    font-size:60px;
+    color:var(--green);
+    margin-bottom:20px;
+    transition:.35s;
+}
+
+.feature-icon:hover{
+    color:var(--gold);
+    transform:translateY(-6px);
+}
+
+.feature-icon+h4{
+    font-size:24px;
+    font-weight:700;
+    margin-bottom:15px;
+}
+
+.feature-icon+p{
+    color:#666;
+}
+
+/* ==========================
+Contact
+========================== */
+
+.contact-section{
+    background:var(--green);
+    color:#fff;
+}
+
+.contact-section h2{
+    font-size:42px;
+    font-weight:800;
+    margin-bottom:25px;
+}
+
+.contact-section p{
+    color:#fff;
+    margin-bottom:15px;
+}
+
+.contact-section a{
+    color:#fff;
+    transition:.3s;
+}
+
+.contact-section a:hover{
+    color:var(--gold);
+}
+
+.contact-section i{
+    width:32px;
+    color:var(--gold);
+}
+
+.contact-section iframe{
+    width:100%;
+    border:0;
+    border-radius:20px;
+    box-shadow:0 15px 40px rgba(0,0,0,.2);
+}
+
+/* ==========================
+Footer
+========================== */
+
+footer{
+    background:#111;
+    padding:30px 0;
+}
+
+footer p{
+    color:#bbb;
+    margin:0;
+    text-align:center;
+}
+
+/* ==========================
+Animation
+========================== */
+
+.service-card,
+.gallery-img,
+.btn,
+.feature-icon{
+    transition:all .35s ease;
+}
+
+.btn:hover{
+    transform:translateY(-3px);
+}
+
+/* ==========================
+Rounded
+========================== */
+
+.rounded-4{
+    border-radius:20px!important;
+}
+
+.shadow{
+    box-shadow:0 15px 40px rgba(0,0,0,.15)!important;
+}
+
+/* ==========================
+Responsive
+========================== */
+
+@media (max-width:992px){
+
+    .hero{
+        height:65vh;
+    }
+
+    .hero-image{
+        height:65vh;
+    }
+
+    .hero h1{
+        font-size:48px;
+    }
+
+    .hero p{
+        font-size:20px;
+    }
+
+    .section-title{
+        font-size:34px;
+    }
+
+    .navbar{
+        padding:14px 0;
+    }
+
+}
+
+@media (max-width:768px){
+
+    section{
+        padding:70px 0;
+    }
+
+    .hero{
+        height:45vh;
+    }
 
     .hero-image{
         height:45vh;
-        object-fit:cover;
+    }
+
+    .hero-overlay{
+        background:rgba(0,0,0,.40);
+    }
+
+    .hero h1{
+        font-size:32px;
+        line-height:1.35;
+    }
+
+    .hero p{
+        font-size:16px;
+        margin:18px 0 25px;
+    }
+
+    .btn-success,
+    .btn-outline-light{
+        padding:12px 28px;
+        font-size:15px;
+    }
+
+    .section-title{
+        font-size:30px;
+    }
+
+    .service-card{
+        padding:28px 20px;
+    }
+
+    .gallery-img{
+        height:220px;
+    }
+
+    .contact-section iframe{
+        margin-top:30px;
+    }
+
+}
+
+@media (max-width:576px){
+
+    .navbar-brand{
+        font-size:1.15rem;
+    }
+
+    .nav-link{
+        margin-left:0;
+        padding:12px 0;
+    }
+
+    .hero{
+        height:42vh;
+    }
+
+    .hero-image{
+        height:42vh;
+    }
+
+    .hero h1{
+        font-size:26px;
+    }
+
+    .hero p{
+        font-size:15px;
+    }
+
+    .btn{
+        width:100%;
+        margin-bottom:12px;
     }
 
 }
