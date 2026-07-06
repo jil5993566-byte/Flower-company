@@ -138,7 +138,9 @@ document.querySelectorAll(".navbar .nav-link").forEach(link => {
     });
 
 });
-
+if ('scrollRestoration' in history) {
+    history.scrollRestoration = 'manual';
+}
 // Console
 
 console.log("綠光工程 × 季兒花藝 官網 V1 已載入");
