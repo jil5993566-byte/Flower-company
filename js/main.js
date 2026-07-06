@@ -43,31 +43,6 @@ if (navbar) {
 }
 // Smooth Scroll
 
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-
-    anchor.addEventListener("click", function (e) {
-
-        const target = document.querySelector(this.getAttribute("href"));
-
-        if (!target) return;
-
-        e.preventDefault();
-
-        target.scrollIntoView({
-            behavior: "smooth",
-            block: "start"
-        });
-
-        // 手機版收起選單
-        const menu = document.querySelector(".navbar-collapse");
-
-        if (menu.classList.contains("show")) {
-            bootstrap.Collapse.getOrCreateInstance(menu).hide();
-        }
-
-    });
-
-});
 
 // 返回頂端按鈕
 
