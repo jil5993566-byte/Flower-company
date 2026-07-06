@@ -114,15 +114,18 @@ gallery.forEach(img => {
 });
 
 // 手機選單點擊後自動收合
-const menu = document.getElementById("menu");
-
-document.querySelectorAll("#menu .nav-link").forEach(link => {
+// 手機選單點擊後自動收合
+document.querySelectorAll(".navbar .nav-link").forEach(link => {
 
     link.addEventListener("click", () => {
 
-        const collapse = bootstrap.Collapse.getOrCreateInstance(menu);
+        const menu = document.getElementById("menu");
 
-        collapse.hide();
+        if (window.innerWidth < 992 && menu.classList.contains("show")) {
+
+            bootstrap.Collapse.getOrCreateInstance(menu).hide();
+
+        }
 
     });
 
