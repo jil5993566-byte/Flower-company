@@ -46,35 +46,37 @@ section{
 Navbar
 ========================== */
 
-.navbar{
-    background:#ffffff;
-    padding:14px 0;
-    transition:.35s;
-    box-shadow:0 2px 15px rgba(0,0,0,.08);
-    z-index:999;
-}
+/* ===== Navbar ===== */
 
-.navbar.scrolled{
-    background:#ffffff;
+.navbar{
+    background:#fff;
+    box-shadow:0 2px 15px rgba(0,0,0,.08);
+    padding:12px 0;
 }
 
 .navbar-brand{
-    color:#1B5E20!important;
-    font-size:1.45rem;
+    color:#1B5E20;
+    font-size:1.35rem;
     font-weight:700;
 }
 
 .nav-link{
-    color:#333!important;
-    margin-left:20px;
+    color:#333;
     font-weight:500;
-    transition:.3s;
+    margin-left:18px;
 }
 
 .nav-link:hover{
-    color:#1B5E20!important;
+    color:#1B5E20;
 }
 
+.navbar-toggler{
+    border:none;
+}
+
+.navbar-toggler:focus{
+    box-shadow:none;
+}
 /* ==========================
 Hero
 ========================== */
