@@ -113,6 +113,21 @@ gallery.forEach(img => {
 
 });
 
+// 手機選單點擊後自動收合
+const menu = document.getElementById("menu");
+
+document.querySelectorAll("#menu .nav-link").forEach(link => {
+
+    link.addEventListener("click", () => {
+
+        const collapse = bootstrap.Collapse.getOrCreateInstance(menu);
+
+        collapse.hide();
+
+    });
+
+});
+
 // Console
 
 console.log("綠光工程 × 季兒花藝 官網 V1 已載入");
