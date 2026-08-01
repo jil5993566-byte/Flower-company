@@ -584,7 +584,7 @@ Responsive
 }.line-float{
     position:fixed;
     right:20px;
-    bottom:calc(90px + env(safe-area-inset-bottom));
+    bottom:20px;
     width:55px;
     height:55px;
     background:#06C755;
@@ -607,7 +607,7 @@ Responsive
 
     right:20px;
 
-    bottom:155px;
+    bottom:90px;
 
     width:55px;
 
