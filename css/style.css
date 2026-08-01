@@ -643,3 +643,12 @@ Responsive
     background:#2E7D32;
 
 }
+.navbar{
+    z-index:10000;
+}
+<a href="tel:0932759677"
+   class="phone-float">
+
+    <i class="fa-solid fa-phone"></i>
+
+</a>
