@@ -64,7 +64,7 @@ document.body.appendChild(topButton);
 
 topButton.style.position = "fixed";
 topButton.style.right = "20px";
-topButton.style.bottom = "20px";
+topButton.style.bottom = "90px";
 topButton.style.width = "50px";
 topButton.style.height = "50px";
 topButton.style.border = "none";
