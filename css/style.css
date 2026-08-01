@@ -643,7 +643,10 @@ Responsive
     background:#2E7D32;
 
 }
-.navbar{
-    z-index:10000;
+html,body{
+overflow-x:hidden;
 }
 
+.navbar{
+z-index:10000;
+}
