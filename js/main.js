@@ -101,26 +101,6 @@ topButton.addEventListener("click", () => {
 
 });
 
-// Gallery Hover
-
-const gallery = document.querySelectorAll(".gallery-img");
-
-gallery.forEach(img => {
-
-    img.addEventListener("mouseenter", () => {
-
-        img.style.transform = "scale(1.05)";
-
-    });
-
-    img.addEventListener("mouseleave", () => {
-
-        img.style.transform = "scale(1)";
-
-    });
-
-});
-
 // 手機選單點擊後自動收合
 // 手機選單點擊後自動收合
 document.querySelectorAll(".navbar .nav-link").forEach(link => {
@@ -138,9 +118,20 @@ document.querySelectorAll(".navbar .nav-link").forEach(link => {
     });
 
 });
+// 手機重新整理回到頂部
+
 if ('scrollRestoration' in history) {
+
     history.scrollRestoration = 'manual';
+
 }
+
+
+window.addEventListener("load", function(){
+
+    window.scrollTo(0,0);
+
+});
 // Console
 
 console.log("綠光工程 × 季兒花藝 官網 V1 已載入");
