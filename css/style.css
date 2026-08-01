@@ -601,3 +601,45 @@ Responsive
 .line-float:hover{
     transform:scale(1.1);
 }
+.phone-float{
+
+    position:fixed;
+
+    right:20px;
+
+    bottom:155px;
+
+    width:55px;
+
+    height:55px;
+
+    background:#1B5E20;
+
+    color:#fff;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    border-radius:50%;
+
+    font-size:24px;
+
+    z-index:999999;
+
+    box-shadow:0 10px 25px rgba(0,0,0,.25);
+
+    transition:.3s;
+
+}
+
+
+.phone-float:hover{
+
+    transform:scale(1.1);
+
+    background:#2E7D32;
+
+}
