@@ -242,12 +242,14 @@ Service
 }
 
 .service-card img{
-    width:100%;
-    aspect-ratio:4 / 3;
-    object-fit:cover;
-    display:block;
-}
 
+    width:100%;
+
+    height:260px;
+
+    object-fit:cover;
+
+}
 .service-card h4{
     margin:20px 15px 10px;
     font-size:22px;
@@ -305,7 +307,7 @@ Gallery
     height:300px;
 
     object-fit:cover;
-
+    transition:.35s;
 }
 
 
@@ -429,11 +431,8 @@ footer p{
 Animation
 ========================== */
 
-.service-card,
-.gallery-img,
-.btn,
-.feature-icon{
-    transition:all .35s ease;
+.btn{
+    transition:.35s;
 }
 
 .btn:hover{
@@ -527,7 +526,7 @@ Responsive
     }
 
     .gallery-img{
-        height:220px;
+        height:260px;
     }
    .gallery-subtitle{
       font-size:26px;
