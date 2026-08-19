@@ -1202,18 +1202,24 @@
         <!-- 加入購物車 -->
 
         <button
-            type="button"
-            class="btn btn-success add-to-cart"
-            data-id="orchid-7"
-            data-name="蘭花 7株"
-            data-price="3000"
-            data-image="images/flowers/orchid.jpg">
+    type="button"
+    class="btn btn-success add-to-cart"
+    data-id="orchid-7"
+    data-name="蘭花 7株"
+    data-price="3000"
+    data-image="images/flowers/orchid.jpg"
+    onclick="JilFlowerCart.addToCart({
+        id: this.dataset.id,
+        name: this.dataset.name,
+        price: Number(this.dataset.price),
+        image: this.dataset.image
+    })">
 
-            <i class="fa-solid fa-cart-shopping"></i>
+    <i class="fa-solid fa-cart-shopping"></i>
 
-            加入購物車
+    加入購物車
 
-        </button>
+</button>
 
     </div>
 
