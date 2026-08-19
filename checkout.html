@@ -502,32 +502,271 @@ document.addEventListener("DOMContentLoaded", function () {
 
     form.addEventListener("submit", function (event) {
 
-        event.preventDefault();
+    event.preventDefault();
+
+    const name =
+        document.getElementById("customer-name").value.trim();
+
+    const phone =
+        document.getElementById("customer-phone").value.trim();
+
+    const line =
+        document.getElementById("customer-line").value.trim();
+
+    const address =
+        document.getElementById("customer-address").value.trim();
+
+    const deliveryDate =
+        document.getElementById("delivery-date").value;
+
+    const note =
+        document.getElementById("customer-note").value.trim();
 
 
-        const name =
-            document.getElementById("customer-name").value.trim();
+    /* ==========================
+       基本檢查
+    =========================== */
+
+    if (!name || !phone) {
+
+        alert("請填寫姓名與電話。");
+
+        return;
+
+    }
 
 
-        const phone =
-            document.getElementById("customer-phone").value.trim();
+    if (!cart || cart.length === 0) {
+
+        alert("購物車目前沒有商品。");
+
+        return;
+
+    }
 
 
-        if (!name || !phone) {
+    /* ==========================
+       建立訂單編號
+    =========================== */
 
-            alert("請填寫姓名與電話。");
+    const now = new Date();
 
-            return;
+    const orderNumber =
+        "JL" +
+        now.getFullYear() +
+        String(now.getMonth() + 1).padStart(2, "0") +
+        String(now.getDate()).padStart(2, "0") +
+        "-" +
+        String(now.getTime()).slice(-6);
 
-        }
+
+    /* ==========================
+       建立訂單資料
+    =========================== */
+
+    const order = {
+
+        orderNumber: orderNumber,
+
+        createdAt: now.toISOString(),
+
+        customer: {
+
+            name: name,
+
+            phone: phone,
+
+            line: line,
+
+            address: address,
+
+            deliveryDate: deliveryDate,
+
+            note: note
+
+        },
+
+        items: cart.map(function (item) {
+
+            return {
+
+                id: item.id,
+
+                name: item.name,
+
+                price: Number(item.price),
+
+                quantity: Number(item.quantity),
+
+                subtotal:
+                    Number(item.price) *
+                    Number(item.quantity)
+
+            };
+
+        }),
+
+        total: cart.reduce(function (total, item) {
+
+            return total +
+                Number(item.price) *
+                Number(item.quantity);
+
+        }, 0)
+
+    };
 
 
-        alert(
-            "訂購資料已填寫完成！\n\n" +
-            "下一步我們再處理訂單送出方式。"
-        );
+    /* ==========================
+       暫時儲存訂單
+    =========================== */
 
-    });
+    localStorage.setItem(
+        "jilflower_last_order",
+        JSON.stringify(order)
+    );
+
+
+    /* ==========================
+       顯示訂單完成畫面
+    =========================== */
+
+    document.body.innerHTML = `
+
+        <div style="
+            min-height:100vh;
+            display:flex;
+            align-items:center;
+            justify-content:center;
+            background:#f8f9fa;
+            padding:30px;
+        ">
+
+            <div style="
+                width:100%;
+                max-width:600px;
+                background:#fff;
+                padding:35px;
+                border-radius:15px;
+                box-shadow:0 5px 25px rgba(0,0,0,.1);
+            ">
+
+                <div style="
+                    text-align:center;
+                    color:#1B5E20;
+                    font-size:50px;
+                    margin-bottom:15px;
+                ">
+
+                    <i class="fa-solid fa-circle-check"></i>
+
+                </div>
+
+
+                <h2 style="
+                    text-align:center;
+                    color:#1B5E20;
+                    margin-bottom:10px;
+                ">
+
+                    訂單資料已建立
+
+                </h2>
+
+
+                <p style="
+                    text-align:center;
+                    color:#666;
+                    margin-bottom:25px;
+                ">
+
+                    感謝您的訂購。
+
+                </p>
+
+
+                <div style="
+                    background:#f8f9fa;
+                    padding:20px;
+                    border-radius:10px;
+                    margin-bottom:20px;
+                ">
+
+                    <p>
+                        <strong>訂單編號：</strong>
+                        ${order.orderNumber}
+                    </p>
+
+                    <p>
+                        <strong>訂購人：</strong>
+                        ${escapeHTML(order.customer.name)}
+                    </p>
+
+                    <p>
+                        <strong>電話：</strong>
+                        ${escapeHTML(order.customer.phone)}
+                    </p>
+
+                    <p>
+                        <strong>商品：</strong>
+                        ${order.items.map(function(item) {
+                            return escapeHTML(item.name)
+                                + " × "
+                                + item.quantity;
+                        }).join("<br>")}
+                    </p>
+
+                    <p style="
+                        margin-bottom:0;
+                        color:#1B5E20;
+                        font-size:20px;
+                        font-weight:700;
+                    ">
+
+                        合計：
+                        NT$ ${order.total.toLocaleString()}
+
+                    </p>
+
+                </div>
+
+
+                <p style="
+                    text-align:center;
+                    color:#777;
+                    font-size:14px;
+                ">
+
+                    我們會再與您確認訂購內容及配送資訊。
+
+                </p>
+
+
+                <a
+                    href="index.html"
+                    style="
+                        display:block;
+                        text-align:center;
+                        background:#1B5E20;
+                        color:#fff;
+                        text-decoration:none;
+                        padding:13px;
+                        border-radius:8px;
+                        font-weight:700;
+                        margin-top:20px;
+                    ">
+
+                    返回網站
+
+                </a>
+
+            </div>
+
+        </div>
+
+    `;
+
+});
 
 
 });
