@@ -1,458 +1,663 @@
-/* =========================================
-   季兒花藝｜購物車系統
+/* =====================================
+   綠光工程 × 季兒花藝
    cart.js
-   ========================================= */
+   購物車主程式
+====================================== */
 
 (function () {
+
     "use strict";
 
-    const CART_KEY = "jilflower_cart";
+    /* =====================================
+       購物車資料
+    ====================================== */
 
-    // 取得購物車
-    function getCart() {
+    let cart = [];
+
+    const STORAGE_KEY = "jilflower_cart";
+
+
+    /* =====================================
+       讀取購物車
+    ====================================== */
+
+    function loadCart() {
+
         try {
-            const cart = localStorage.getItem(CART_KEY);
-            return cart ? JSON.parse(cart) : [];
-        } catch (error) {
-            console.error("讀取購物車失敗：", error);
-            return [];
-        }
-    }
 
-    // 儲存購物車
-    function saveCart(cart) {
-        localStorage.setItem(CART_KEY, JSON.stringify(cart));
-        updateCartUI();
-    }
+            const savedCart =
+                localStorage.getItem(STORAGE_KEY);
 
-    // 加入購物車
-    function addToCart(product) {
-        if (!product || !product.id) {
-            console.error("商品資料不完整");
-            return;
-        }
+            if (savedCart) {
 
-        const cart = getCart();
+                cart = JSON.parse(savedCart);
 
-        const existingProduct = cart.find(
-            item => item.id === product.id
-        );
-
-        if (existingProduct) {
-            existingProduct.quantity += product.quantity || 1;
-        } else {
-            cart.push({
-                id: product.id,
-                name: product.name || "未命名商品",
-                price: Number(product.price) || 0,
-                image: product.image || "",
-                quantity: product.quantity || 1
-            });
-        }
-
-        saveCart(cart);
-
-        showCartMessage(
-            `${product.name || "商品"} 已加入購物車`
-        );
-    }
-
-    // 修改數量
-    function updateQuantity(productId, quantity) {
-        const cart = getCart();
-
-        const product = cart.find(
-            item => item.id === productId
-        );
-
-        if (!product) return;
-
-        quantity = Number(quantity);
-
-        if (quantity <= 0) {
-            removeFromCart(productId);
-            return;
-        }
-
-        product.quantity = quantity;
-
-        saveCart(cart);
-    }
-
-    // 增加數量
-    function increaseQuantity(productId) {
-        const cart = getCart();
-
-        const product = cart.find(
-            item => item.id === productId
-        );
-
-        if (!product) return;
-
-        product.quantity += 1;
-
-        saveCart(cart);
-    }
-
-    // 減少數量
-    function decreaseQuantity(productId) {
-        const cart = getCart();
-
-        const product = cart.find(
-            item => item.id === productId
-        );
-
-        if (!product) return;
-
-        if (product.quantity <= 1) {
-            removeFromCart(productId);
-            return;
-        }
-
-        product.quantity -= 1;
-
-        saveCart(cart);
-    }
-
-    // 移除商品
-    function removeFromCart(productId) {
-        let cart = getCart();
-
-        cart = cart.filter(
-            item => item.id !== productId
-        );
-
-        saveCart(cart);
-    }
-
-    // 清空購物車
-    function clearCart() {
-        localStorage.removeItem(CART_KEY);
-        updateCartUI();
-    }
-
-    // 計算商品數量
-    function getCartCount() {
-        const cart = getCart();
-
-        return cart.reduce(
-            (total, item) => total + item.quantity,
-            0
-        );
-    }
-
-    // 計算總金額
-    function getCartTotal() {
-        const cart = getCart();
-
-        return cart.reduce(
-            (total, item) =>
-                total + (item.price * item.quantity),
-            0
-        );
-    }
-
-    // 金額格式
-    function formatPrice(price) {
-        return Number(price).toLocaleString("zh-TW");
-    }
-
-    // 更新購物車數量
-    function updateCartUI() {
-
-        const count = getCartCount();
-
-        // 尋找所有購物車數量徽章
-        const badges = document.querySelectorAll(
-            ".cart-count"
-        );
-
-        badges.forEach(badge => {
-            badge.textContent = count;
-
-            if (count > 0) {
-                badge.style.display = "inline-flex";
-            } else {
-                badge.style.display = "none";
             }
-        });
 
-        // 如果頁面有購物車內容
-        renderCartItems();
+        } catch (error) {
+
+            console.error(
+                "購物車資料讀取失敗",
+                error
+            );
+
+            cart = [];
+
+        }
+
     }
 
-    // 顯示購物車商品
-    function renderCartItems() {
+
+    /* =====================================
+       儲存購物車
+    ====================================== */
+
+    function saveCart() {
+
+        try {
+
+            localStorage.setItem(
+                STORAGE_KEY,
+                JSON.stringify(cart)
+            );
+
+        } catch (error) {
+
+            console.error(
+                "購物車資料儲存失敗",
+                error
+            );
+
+        }
+
+    }
+
+
+    /* =====================================
+       商品總數量
+    ====================================== */
+
+    function getCartCount() {
+
+        return cart.reduce(
+            function (total, item) {
+
+                return total + item.quantity;
+
+            },
+            0
+        );
+
+    }
+
+
+    /* =====================================
+       商品總金額
+    ====================================== */
+
+    function getCartTotal() {
+
+        return cart.reduce(
+            function (total, item) {
+
+                return total +
+                    (Number(item.price) *
+                    Number(item.quantity));
+
+            },
+            0
+        );
+
+    }
+
+
+    /* =====================================
+       金額格式
+    ====================================== */
+
+    function formatPrice(price) {
+
+        return "NT$ " +
+            Number(price).toLocaleString("zh-TW");
+
+    }
+
+
+    /* =====================================
+       更新購物車數量
+    ====================================== */
+
+    function updateCartCount() {
+
+        const countElement =
+            document.querySelector(".cart-count");
+
+        if (!countElement) return;
+
+        const count =
+            getCartCount();
+
+        countElement.textContent = count;
+
+        if (count > 0) {
+
+            countElement.style.display = "flex";
+
+        } else {
+
+            countElement.style.display = "none";
+
+        }
+
+    }
+
+
+    /* =====================================
+       顯示購物車內容
+    ====================================== */
+
+    function renderCart() {
 
         const container =
-            document.querySelector("#cart-items");
+            document.getElementById("cart-items");
+
+        const totalElement =
+            document.getElementById("cart-total");
 
         if (!container) return;
 
-        const cart = getCart();
+
+        /* 空購物車 */
 
         if (cart.length === 0) {
 
             container.innerHTML = `
+
                 <div class="cart-empty">
-                    <i class="fas fa-shopping-basket"></i>
-                    <p>購物車目前是空的</p>
+
+                    <i class="fa-solid fa-cart-shopping"></i>
+
+                    <p>
+                        購物車目前是空的
+                    </p>
+
+                    <small>
+                        選擇喜歡的花禮加入購物車吧！
+                    </small>
+
                 </div>
+
             `;
 
-            updateCartSummary();
+            if (totalElement) {
+
+                totalElement.textContent =
+                    "NT$ 0";
+
+            }
+
+            updateCartCount();
+
             return;
+
         }
 
-        container.innerHTML = cart.map(item => {
 
-            const subtotal =
-                item.price * item.quantity;
+        /* 商品列表 */
 
-            return `
-                <div class="cart-item"
-                     data-product-id="${item.id}">
+        container.innerHTML =
+            cart.map(function (item, index) {
 
-                    <div class="cart-item-image">
+                const subtotal =
+                    Number(item.price) *
+                    Number(item.quantity);
 
-                        ${
-                            item.image
-                            ? `
+
+                return `
+
+                    <div class="cart-item">
+
+                        <div class="cart-item-image">
+
+                            ${
+                                item.image
+                                ?
+                                `
                                 <img
                                     src="${item.image}"
-                                    alt="${item.name}"
-                                >
-                              `
-                            : `
+                                    alt="${escapeHTML(item.name)}">
+                                `
+                                :
+                                `
                                 <div class="cart-no-image">
-                                    <i class="fas fa-image"></i>
+
+                                    <i class="fa-solid fa-image"></i>
+
                                 </div>
-                              `
-                        }
+                                `
+                            }
 
-                    </div>
-
-                    <div class="cart-item-info">
-
-                        <h4>${item.name}</h4>
-
-                        <div class="cart-item-price">
-                            NT$ ${formatPrice(item.price)}
                         </div>
 
-                        <div class="cart-item-controls">
+
+                        <div class="cart-item-info">
+
+                            <h4>
+                                ${escapeHTML(item.name)}
+                            </h4>
+
+                            <div class="cart-item-price">
+
+                                ${formatPrice(item.price)}
+
+                            </div>
+
+
+                            <div class="cart-item-controls">
+
+                                <button
+                                    type="button"
+                                    class="cart-minus"
+                                    data-index="${index}">
+
+                                    −
+
+                                </button>
+
+
+                                <span class="cart-quantity">
+
+                                    ${item.quantity}
+
+                                </span>
+
+
+                                <button
+                                    type="button"
+                                    class="cart-plus"
+                                    data-index="${index}">
+
+                                    +
+
+                                </button>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="cart-item-right">
+
+                            <div class="cart-subtotal">
+
+                                ${formatPrice(subtotal)}
+
+                            </div>
+
 
                             <button
                                 type="button"
-                                class="cart-minus"
-                                data-id="${item.id}"
-                                aria-label="減少數量">
-                                −
-                            </button>
+                                class="cart-remove"
+                                data-index="${index}"
+                                aria-label="刪除商品">
 
-                            <span class="cart-quantity">
-                                ${item.quantity}
-                            </span>
+                                <i class="fa-solid fa-trash"></i>
 
-                            <button
-                                type="button"
-                                class="cart-plus"
-                                data-id="${item.id}"
-                                aria-label="增加數量">
-                                ＋
                             </button>
 
                         </div>
 
                     </div>
 
-                    <div class="cart-item-right">
+                `;
 
-                        <div class="cart-subtotal">
-                            NT$ ${formatPrice(subtotal)}
-                        </div>
+            }).join("");
 
-                        <button
-                            type="button"
-                            class="cart-remove"
-                            data-id="${item.id}"
-                            aria-label="刪除商品">
-                            <i class="fas fa-trash-alt"></i>
-                        </button>
 
-                    </div>
+        /* 總金額 */
 
-                </div>
-            `;
+        if (totalElement) {
 
-        }).join("");
+            totalElement.textContent =
+                formatPrice(getCartTotal());
 
-        updateCartSummary();
-    }
-
-    // 更新購物車總計
-    function updateCartSummary() {
-
-        const totalElement =
-            document.querySelector("#cart-total");
-
-        if (!totalElement) return;
-
-        totalElement.textContent =
-            `NT$ ${formatPrice(getCartTotal())}`;
-    }
-
-    // 加入購物車提示
-    function showCartMessage(message) {
-
-        let messageBox =
-            document.querySelector("#cart-message");
-
-        if (!messageBox) {
-
-            messageBox =
-                document.createElement("div");
-
-            messageBox.id = "cart-message";
-
-            document.body.appendChild(messageBox);
         }
 
-        messageBox.textContent = message;
 
-        messageBox.classList.add("show");
-
-        setTimeout(() => {
-            messageBox.classList.remove("show");
-        }, 2200);
-    }
-
-    // 綁定加入購物車按鈕
-    function bindAddToCartButtons() {
-
-        document.addEventListener(
-            "click",
-            function (event) {
-
-                const button =
-                    event.target.closest(
-                        ".add-to-cart"
-                    );
-
-                if (!button) return;
-
-                const product = {
-
-                    id:
-                        button.dataset.id,
-
-                    name:
-                        button.dataset.name,
-
-                    price:
-                        Number(button.dataset.price),
-
-                    image:
-                        button.dataset.image || "",
-
-                    quantity:
-                        1
-                };
-
-                addToCart(product);
-            }
-        );
-    }
-
-    // 綁定購物車操作
-    function bindCartButtons() {
-
-        document.addEventListener(
-            "click",
-            function (event) {
-
-                const plusButton =
-                    event.target.closest(
-                        ".cart-plus"
-                    );
-
-                const minusButton =
-                    event.target.closest(
-                        ".cart-minus"
-                    );
-
-                const removeButton =
-                    event.target.closest(
-                        ".cart-remove"
-                    );
-
-                if (plusButton) {
-
-                    increaseQuantity(
-                        plusButton.dataset.id
-                    );
-
-                    return;
-                }
-
-                if (minusButton) {
-
-                    decreaseQuantity(
-                        minusButton.dataset.id
-                    );
-
-                    return;
-                }
-
-                if (removeButton) {
-
-                    removeFromCart(
-                        removeButton.dataset.id
-                    );
-
-                    return;
-                }
-            }
-        );
-    }
-
-    // 初始化
-    function initCart() {
-
-        bindAddToCartButtons();
+        updateCartCount();
 
         bindCartButtons();
 
-        updateCartUI();
     }
 
-    // 對外公開
-    window.JilFlowerCart = {
 
-        getCart,
-        addToCart,
-        updateQuantity,
-        increaseQuantity,
-        decreaseQuantity,
-        removeFromCart,
-        clearCart,
-        getCartCount,
-        getCartTotal,
-        formatPrice,
-        updateCartUI
-    };
+    /* =====================================
+       綁定 + / - / 刪除
+    ====================================== */
 
-    // DOM 完成後啟動
-    if (document.readyState === "loading") {
+    function bindCartButtons() {
 
-        document.addEventListener(
-            "DOMContentLoaded",
-            initCart
+
+        /* 減少數量 */
+
+        document
+            .querySelectorAll(".cart-minus")
+            .forEach(function (button) {
+
+                button.addEventListener(
+                    "click",
+                    function () {
+
+                        const index =
+                            Number(
+                                this.dataset.index
+                            );
+
+                        if (!cart[index]) return;
+
+
+                        if (
+                            cart[index].quantity > 1
+                        ) {
+
+                            cart[index].quantity--;
+
+                        } else {
+
+                            cart.splice(index, 1);
+
+                        }
+
+
+                        saveCart();
+
+                        renderCart();
+
+                    }
+                );
+
+            });
+
+
+        /* 增加數量 */
+
+        document
+            .querySelectorAll(".cart-plus")
+            .forEach(function (button) {
+
+                button.addEventListener(
+                    "click",
+                    function () {
+
+                        const index =
+                            Number(
+                                this.dataset.index
+                            );
+
+                        if (!cart[index]) return;
+
+
+                        cart[index].quantity++;
+
+
+                        saveCart();
+
+                        renderCart();
+
+                    }
+                );
+
+            });
+
+
+        /* 刪除商品 */
+
+        document
+            .querySelectorAll(".cart-remove")
+            .forEach(function (button) {
+
+                button.addEventListener(
+                    "click",
+                    function () {
+
+                        const index =
+                            Number(
+                                this.dataset.index
+                            );
+
+                        if (!cart[index]) return;
+
+
+                        cart.splice(index, 1);
+
+
+                        saveCart();
+
+                        renderCart();
+
+                    }
+                );
+
+            });
+
+    }
+
+
+    /* =====================================
+       加入購物車
+    ====================================== */
+
+    function addToCart(product) {
+
+        if (!product) return;
+
+
+        if (
+            !product.id ||
+            !product.name
+        ) {
+
+            console.error(
+                "商品缺少 id 或 name",
+                product
+            );
+
+            return;
+
+        }
+
+
+        const price =
+            Number(product.price);
+
+
+        if (
+            !Number.isFinite(price) ||
+            price < 0
+        ) {
+
+            console.error(
+                "商品價格錯誤",
+                product
+            );
+
+            return;
+
+        }
+
+
+        /* 找看看購物車裡是否已經有 */
+
+        const existingItem =
+            cart.find(function (item) {
+
+                return item.id === product.id;
+
+            });
+
+
+        if (existingItem) {
+
+            existingItem.quantity++;
+
+        } else {
+
+            cart.push({
+
+                id: String(product.id),
+
+                name: String(product.name),
+
+                price: price,
+
+                image: product.image || "",
+
+                quantity: 1
+
+            });
+
+        }
+
+
+        saveCart();
+
+        renderCart();
+
+        showCartMessage(
+            product.name + " 已加入購物車"
         );
 
-    } else {
-
-        initCart();
     }
+
+
+    /* =====================================
+       移除商品
+    ====================================== */
+
+    function removeFromCart(id) {
+
+        cart =
+            cart.filter(function (item) {
+
+                return item.id !== String(id);
+
+            });
+
+
+        saveCart();
+
+        renderCart();
+
+    }
+
+
+    /* =====================================
+       清空購物車
+    ====================================== */
+
+    function clearCart() {
+
+        cart = [];
+
+        saveCart();
+
+        renderCart();
+
+    }
+
+
+    /* =====================================
+       購物車提示
+    ====================================== */
+
+    function showCartMessage(message) {
+
+        const messageElement =
+            document.getElementById("cart-message");
+
+        if (!messageElement) return;
+
+
+        messageElement.textContent =
+            message;
+
+
+        messageElement.classList.add("show");
+
+
+        setTimeout(function () {
+
+            messageElement.classList.remove(
+                "show"
+            );
+
+        }, 2000);
+
+    }
+
+
+    /* =====================================
+       HTML 安全處理
+    ====================================== */
+
+    function escapeHTML(value) {
+
+        return String(value)
+
+            .replace(/&/g, "&amp;")
+
+            .replace(/</g, "&lt;")
+
+            .replace(/>/g, "&gt;")
+
+            .replace(/"/g, "&quot;")
+
+            .replace(/'/g, "&#039;");
+
+    }
+
+
+    /* =====================================
+       對外公開
+    ====================================== */
+
+    window.JilFlowerCart = {
+
+        addToCart: addToCart,
+
+        removeFromCart: removeFromCart,
+
+        clearCart: clearCart,
+
+        getCart: function () {
+
+            return cart;
+
+        },
+
+        getCartCount: getCartCount,
+
+        getCartTotal: getCartTotal,
+
+        renderCart: renderCart
+
+    };
+
+
+    /* =====================================
+       初始化
+    ====================================== */
+
+    document.addEventListener(
+        "DOMContentLoaded",
+        function () {
+
+            loadCart();
+
+            renderCart();
+
+        }
+    );
+
 
 })();
