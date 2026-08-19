@@ -1,0 +1,1024 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>訂購｜季兒花藝 × 綠光工程</title>
+
+    <meta name="description"
+          content="季兒花藝線上訂購頁面，確認商品與訂購資料後送出訂單。">
+
+    <link rel="icon"
+          type="image/png"
+          href="images/favicon.png">
+
+    <!-- Google Font -->
+    <link rel="preconnect"
+          href="https://fonts.googleapis.com">
+
+    <link rel="preconnect"
+          href="https://fonts.gstatic.com"
+          crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700;900&display=swap"
+          rel="stylesheet">
+
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+          rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <!-- 原本網站 CSS -->
+    <link rel="stylesheet"
+          href="css/style.css">
+
+
+    <style>
+
+        body {
+            font-family: "Noto Sans TC", sans-serif;
+            background: #f8f9fa;
+            padding-top: 80px;
+        }
+
+
+        /* =========================
+           頁面標題
+        ========================= */
+
+        .checkout-title {
+            padding: 45px 0 30px;
+            text-align: center;
+        }
+
+        .checkout-title h1 {
+            color: #1B5E20;
+            font-weight: 800;
+            margin-bottom: 10px;
+        }
+
+        .checkout-title p {
+            color: #777;
+            margin: 0;
+        }
+
+
+        /* =========================
+           區塊
+        ========================= */
+
+        .checkout-box {
+            background: #fff;
+            border-radius: 12px;
+            padding: 25px;
+            margin-bottom: 25px;
+            box-shadow: 0 3px 15px rgba(0,0,0,.06);
+        }
+
+        .checkout-box h2 {
+            font-size: 21px;
+            color: #1B5E20;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+
+
+        /* =========================
+           商品
+        ========================= */
+
+        .checkout-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding: 15px 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        .checkout-item:last-child {
+            border-bottom: none;
+        }
+
+        .checkout-item-image {
+            width: 80px;
+            height: 80px;
+            border-radius: 8px;
+            overflow: hidden;
+            flex-shrink: 0;
+            background: #f3f3f3;
+        }
+
+        .checkout-item-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .checkout-item-info {
+            flex: 1;
+        }
+
+        .checkout-item-info h3 {
+            font-size: 17px;
+            margin: 0 0 5px;
+        }
+
+        .checkout-item-info p {
+            margin: 0;
+            color: #777;
+            font-size: 14px;
+        }
+
+        .checkout-item-price {
+            text-align: right;
+            font-weight: 700;
+            color: #1B5E20;
+        }
+
+
+        /* =========================
+           表單
+        ========================= */
+
+        .form-label {
+            font-weight: 600;
+        }
+
+        .form-control,
+        .form-select {
+            padding: 11px 12px;
+            border-radius: 7px;
+        }
+
+        .form-control:focus,
+        .form-select:focus {
+            border-color: #1B5E20;
+            box-shadow: 0 0 0 .2rem rgba(27,94,32,.12);
+        }
+
+
+        /* =========================
+           合計
+        ========================= */
+
+        .checkout-total {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 15px;
+            margin-top: 10px;
+            border-top: 2px solid #eee;
+        }
+
+        .checkout-total span:first-child {
+            font-size: 18px;
+            font-weight: 700;
+        }
+
+        #checkout-total-price {
+            font-size: 25px;
+            font-weight: 900;
+            color: #1B5E20;
+        }
+
+
+        /* =========================
+           送出訂單
+        ========================= */
+
+        .submit-order-btn {
+            width: 100%;
+            border: none;
+            padding: 14px;
+            border-radius: 8px;
+            background: #1B5E20;
+            color: #fff;
+            font-size: 18px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: .25s;
+        }
+
+        .submit-order-btn:hover {
+            background: #2E7D32;
+        }
+
+
+        /* =========================
+           返回購物車
+        ========================= */
+
+        .back-cart {
+            display: inline-block;
+            color: #1B5E20;
+            text-decoration: none;
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+
+        .back-cart:hover {
+            text-decoration: underline;
+        }
+
+
+        /* =========================
+           空購物車
+        ========================= */
+
+        .checkout-empty {
+            text-align: center;
+            padding: 50px 20px;
+            color: #888;
+        }
+
+        .checkout-empty i {
+            font-size: 50px;
+            color: #ccc;
+            margin-bottom: 15px;
+        }
+
+
+        /* =========================
+           手機
+        ========================= */
+
+        @media (max-width: 576px) {
+
+            body {
+                padding-top: 70px;
+            }
+
+            .checkout-box {
+                padding: 18px;
+            }
+
+            .checkout-item-image {
+                width: 65px;
+                height: 65px;
+            }
+
+            .checkout-item-info h3 {
+                font-size: 15px;
+            }
+
+            .checkout-item-price {
+                font-size: 14px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<!-- =========================
+     Navbar
+========================= -->
+
+<nav class="navbar navbar-expand-lg bg-white fixed-top shadow-sm">
+
+    <div class="container">
+
+        <a class="navbar-brand fw-bold"
+           href="index.html">
+
+            綠光工程 × 季兒花藝
+
+        </a>
+
+    </div>
+
+</nav>
+
+
+<!-- =========================
+     標題
+========================= -->
+
+<section class="checkout-title">
+
+    <div class="container">
+
+        <h1>
+            <i class="fa-solid fa-clipboard-check"></i>
+            訂購資料
+        </h1>
+
+        <p>
+            請確認商品及填寫訂購資料
+        </p>
+
+    </div>
+
+</section>
+
+
+<main class="container pb-5">
+
+
+    <a href="index.html"
+       class="back-cart">
+
+        <i class="fa-solid fa-arrow-left"></i>
+
+        返回購物車
+
+    </a>
+
+
+    <!-- =========================
+         商品確認
+    ========================= -->
+
+    <section class="checkout-box">
+
+        <h2>
+
+            <i class="fa-solid fa-cart-shopping"></i>
+
+            訂購商品
+
+        </h2>
+
+
+        <div id="checkout-items">
+
+            <!-- JavaScript 自動產生商品 -->
+
+        </div>
+
+
+        <div class="checkout-total">
+
+            <span>
+                商品合計
+            </span>
+
+            <span id="checkout-total-price">
+                NT$ 0
+            </span>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         訂購人資料
+    ========================= -->
+
+    <section class="checkout-box">
+
+        <h2>
+
+            <i class="fa-solid fa-user"></i>
+
+            訂購人資料
+
+        </h2>
+
+
+        <form id="order-form">
+
+
+            <div class="mb-3">
+
+                <label class="form-label">
+                    姓名
+                </label>
+
+                <input
+                    type="text"
+                    class="form-control"
+                    id="customer-name"
+                    required
+                    placeholder="請輸入姓名">
+
+            </div>
+
+
+            <div class="mb-3">
+
+                <label class="form-label">
+                    電話
+                </label>
+
+                <input
+                    type="tel"
+                    class="form-control"
+                    id="customer-phone"
+                    required
+                    placeholder="例如：0932-759-677">
+
+            </div>
+
+
+            <div class="mb-3">
+
+                <label class="form-label">
+                    LINE 名稱
+                    <span class="text-muted fw-normal">
+                        （選填）
+                    </span>
+                </label>
+
+                <input
+                    type="text"
+                    class="form-control"
+                    id="customer-line"
+                    placeholder="方便我們聯絡您">
+
+            </div>
+
+
+            <div class="mb-3">
+
+                <label class="form-label">
+                    訂購用途
+                </label>
+
+                <select
+                    class="form-select"
+                    id="order-purpose">
+
+                    <option value="">
+                        請選擇
+                    </option>
+
+                    <option value="生日">
+                        生日
+                    </option>
+
+                    <option value="畢業">
+                        畢業
+                    </option>
+
+                    <option value="開幕">
+                        開幕
+                    </option>
+
+                    <option value="祝賀">
+                        祝賀
+                    </option>
+
+                    <option value="告別式">
+                        告別式
+                    </option>
+
+                    <option value="活動">
+                        活動
+                    </option>
+
+                    <option value="其他">
+                        其他
+                    </option>
+
+                </select>
+
+            </div>
+
+
+        </form>
+
+    </section>
+
+
+    <!-- =========================
+         配送資料
+    ========================= -->
+
+    <section class="checkout-box">
+
+        <h2>
+
+            <i class="fa-solid fa-truck"></i>
+
+            配送 / 取貨資料
+
+        </h2>
+
+
+        <div class="mb-3">
+
+            <label class="form-label">
+                取貨方式
+            </label>
+
+            <select
+                class="form-select"
+                id="delivery-method"
+                required>
+
+                <option value="">
+                    請選擇
+                </option>
+
+                <option value="到店自取">
+                    到店自取
+                </option>
+
+                <option value="台南市配送">
+                    台南市配送
+                </option>
+
+                <option value="其他地區">
+                    其他地區
+                </option>
+
+            </select>
+
+        </div>
+
+
+        <div class="mb-3">
+
+            <label class="form-label">
+                配送 / 取貨地址
+            </label>
+
+            <textarea
+                class="form-control"
+                id="customer-address"
+                rows="3"
+                placeholder="如需配送，請填寫完整地址"></textarea>
+
+        </div>
+
+
+        <div class="row">
+
+
+            <div class="col-md-6 mb-3">
+
+                <label class="form-label">
+                    希望日期
+                </label>
+
+                <input
+                    type="date"
+                    class="form-control"
+                    id="delivery-date">
+
+            </div>
+
+
+            <div class="col-md-6 mb-3">
+
+                <label class="form-label">
+                    希望時間
+                </label>
+
+                <select
+                    class="form-select"
+                    id="delivery-time">
+
+                    <option value="">
+                        請選擇
+                    </option>
+
+                    <option value="上午">
+                        上午
+                    </option>
+
+                    <option value="下午">
+                        下午
+                    </option>
+
+                    <option value="晚上">
+                        晚上
+                    </option>
+
+                </select>
+
+            </div>
+
+
+        </div>
+
+
+        <div class="mb-3">
+
+            <label class="form-label">
+                訂單備註
+            </label>
+
+            <textarea
+                class="form-control"
+                id="order-note"
+                rows="4"
+                placeholder="例如：希望花色、祝福卡片內容、特殊需求等"></textarea>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         送出
+    ========================= -->
+
+    <section class="checkout-box">
+
+        <button
+            type="button"
+            class="submit-order-btn"
+            id="submit-order">
+
+            <i class="fa-solid fa-paper-plane"></i>
+
+            送出訂購資料
+
+        </button>
+
+    </section>
+
+
+</main>
+
+
+<!-- Bootstrap -->
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js">
+</script>
+
+
+<!-- =========================
+     Checkout JavaScript
+========================= -->
+
+<script>
+
+document.addEventListener(
+    "DOMContentLoaded",
+    function () {
+
+
+        /* =========================
+           取得購物車
+        ========================= */
+
+        const cart =
+            JSON.parse(
+                localStorage.getItem("jilFlowerCart")
+            ) || [];
+
+
+        const itemsContainer =
+            document.getElementById(
+                "checkout-items"
+            );
+
+
+        const totalElement =
+            document.getElementById(
+                "checkout-total-price"
+            );
+
+
+        /* =========================
+           顯示商品
+        ========================= */
+
+        function renderCheckout() {
+
+
+            itemsContainer.innerHTML = "";
+
+
+            if (!cart.length) {
+
+                itemsContainer.innerHTML = `
+
+                    <div class="checkout-empty">
+
+                        <i class="fa-solid fa-cart-shopping"></i>
+
+                        <p>
+                            購物車目前沒有商品
+                        </p>
+
+                        <a
+                            href="index.html"
+                            class="btn btn-success">
+
+                            回到網站選購
+
+                        </a>
+
+                    </div>
+
+                `;
+
+                totalElement.textContent =
+                    "NT$ 0";
+
+                return;
+
+            }
+
+
+            let total = 0;
+
+
+            cart.forEach(function (item) {
+
+
+                const quantity =
+                    Number(item.quantity) || 1;
+
+
+                const price =
+                    Number(item.price) || 0;
+
+
+                const subtotal =
+                    price * quantity;
+
+
+                total += subtotal;
+
+
+                const image =
+                    item.image || "";
+
+
+                itemsContainer.innerHTML += `
+
+                    <div class="checkout-item">
+
+
+                        <div class="checkout-item-image">
+
+                            ${
+                                image
+
+                                ?
+
+                                `<img
+                                    src="${image}"
+                                    alt="${item.name || "商品"}">`
+
+                                :
+
+                                `<i class="fa-solid fa-image"
+                                    style="
+                                    display:flex;
+                                    width:100%;
+                                    height:100%;
+                                    align-items:center;
+                                    justify-content:center;
+                                    color:#ccc;">
+                                </i>`
+                            }
+
+                        </div>
+
+
+                        <div class="checkout-item-info">
+
+                            <h3>
+                                ${item.name || "商品"}
+                            </h3>
+
+                            <p>
+                                NT$ ${price.toLocaleString()}
+                                × ${quantity}
+                            </p>
+
+                        </div>
+
+
+                        <div class="checkout-item-price">
+
+                            NT$ ${subtotal.toLocaleString()}
+
+                        </div>
+
+
+                    </div>
+
+                `;
+
+            });
+
+
+            totalElement.textContent =
+                "NT$ " + total.toLocaleString();
+
+        }
+
+
+        renderCheckout();
+
+
+        /* =========================
+           送出訂單
+        ========================= */
+
+        document
+        .getElementById("submit-order")
+        .addEventListener(
+            "click",
+            function () {
+
+
+                const name =
+                    document
+                    .getElementById("customer-name")
+                    .value.trim();
+
+
+                const phone =
+                    document
+                    .getElementById("customer-phone")
+                    .value.trim();
+
+
+                const delivery =
+                    document
+                    .getElementById("delivery-method")
+                    .value;
+
+
+                const address =
+                    document
+                    .getElementById("customer-address")
+                    .value.trim();
+
+
+                const date =
+                    document
+                    .getElementById("delivery-date")
+                    .value;
+
+
+                const time =
+                    document
+                    .getElementById("delivery-time")
+                    .value;
+
+
+                const purpose =
+                    document
+                    .getElementById("order-purpose")
+                    .value;
+
+
+                const line =
+                    document
+                    .getElementById("customer-line")
+                    .value.trim();
+
+
+                const note =
+                    document
+                    .getElementById("order-note")
+                    .value.trim();
+
+
+                /* =========================
+                   基本檢查
+                ========================= */
+
+                if (!cart.length) {
+
+                    alert(
+                        "購物車目前沒有商品。"
+                    );
+
+                    return;
+
+                }
+
+
+                if (!name) {
+
+                    alert(
+                        "請輸入姓名。"
+                    );
+
+                    return;
+
+                }
+
+
+                if (!phone) {
+
+                    alert(
+                        "請輸入電話。"
+                    );
+
+                    return;
+
+                }
+
+
+                if (!delivery) {
+
+                    alert(
+                        "請選擇取貨方式。"
+                    );
+
+                    return;
+
+                }
+
+
+                /* =========================
+                   暫存訂單
+                ========================= */
+
+                const order = {
+
+                    orderId:
+                        "JF" +
+                        Date.now(),
+
+                    createdAt:
+                        new Date().toISOString(),
+
+                    customer: {
+
+                        name: name,
+
+                        phone: phone,
+
+                        line: line
+
+                    },
+
+                    purpose: purpose,
+
+                    delivery: {
+
+                        method: delivery,
+
+                        address: address,
+
+                        date: date,
+
+                        time: time
+
+                    },
+
+                    note: note,
+
+                    items: cart
+
+                };
+
+
+                localStorage.setItem(
+                    "jilFlowerOrder",
+                    JSON.stringify(order)
+                );
+
+
+                /* =========================
+                   目前先顯示訂單完成
+                ========================= */
+
+                alert(
+                    "訂購資料已確認！\n\n" +
+                    "我們會再與您聯絡確認價格、配送及付款方式。"
+                );
+
+
+                /*
+                 * 注意：
+                 * 這裡目前沒有真正寄出訂單。
+                 *
+                 * 下一階段可以接：
+                 * LINE
+                 * Email
+                 * Google Sheets
+                 * 表單後台
+                 *
+                 * 到時候再把訂單真正送到店家。
+                 */
+
+
+            }
+        );
+
+    }
+);
+
+</script>
+
+
+</body>
+
+</html>
